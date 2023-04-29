@@ -1,10 +1,3 @@
 <template>
-  <div class="container">Welcome</div>
+  <div class="text-3xl font-bold">Welcome</div>
 </template>
-
-<style>
-.container {
-  max-width: 1200px;
-  margin-inline: auto;
-}
-</style>
