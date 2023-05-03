@@ -1,5 +1,6 @@
 <script setup>
 import { ref } from 'vue';
+import useSignup from '../composables/useSignup.js';
 import { DialogTitle } from '@headlessui/vue';
 import { UserCircleIcon, EyeIcon, EyeSlashIcon, AtSymbolIcon } from '@heroicons/vue/24/outline';
 
@@ -8,13 +9,10 @@ const email = ref('');
 const password = ref('');
 const hiddenPassword = ref(true);
 
-const signUserUp = () => {
-  console.log(
-    `form submitted with Username: ${username.value}, Password: ${password.value}, E-mail: ${email.value}`
-  );
-  username.value = '';
-  email.value = '';
-  password.value = '';
+const { error, signup } = useSignup();
+
+const signUserUp = async () => {
+  await signup(email.value, password.value, username.value);
 };
 </script>
 
@@ -78,7 +76,7 @@ const signUserUp = () => {
       />
     </div>
   </form>
-
+  <div class="text-center text-red-600">{{ error }}</div>
   <div class="mt-4 text-center">
     <button
       type="submit"
