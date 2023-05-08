@@ -5,6 +5,8 @@ import { DialogTitle } from '@headlessui/vue';
 import InputEmail from './InputEmail.vue';
 import InputPassword from './InputPassword.vue';
 
+const emit = defineEmits(['signedIn']);
+
 const email = ref('');
 const password = ref('');
 
@@ -20,6 +22,10 @@ const { error, login } = useLogin();
 
 const signUserIn = async () => {
   await login(email.value, password.value);
+
+  if (!error.value) {
+    emit('signedIn');
+  }
 };
 </script>
 

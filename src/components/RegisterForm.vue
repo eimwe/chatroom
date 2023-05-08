@@ -6,6 +6,8 @@ import { UserCircleIcon } from '@heroicons/vue/24/outline';
 import InputEmail from './InputEmail.vue';
 import InputPassword from './InputPassword.vue';
 
+const emit = defineEmits(['signedUp']);
+
 const username = ref('');
 const email = ref('');
 const password = ref('');
@@ -22,6 +24,10 @@ const { error, signup } = useSignup();
 
 const signUserUp = async () => {
   await signup(email.value, password.value, username.value);
+
+  if (!error.value) {
+    emit('signedUp');
+  }
 };
 </script>
 
