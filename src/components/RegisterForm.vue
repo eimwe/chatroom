@@ -2,12 +2,17 @@
 import { ref } from 'vue';
 import useSignup from '../composables/useSignup.js';
 import { DialogTitle } from '@headlessui/vue';
-import { UserCircleIcon, AtSymbolIcon } from '@heroicons/vue/24/outline';
+import { UserCircleIcon } from '@heroicons/vue/24/outline';
+import InputEmail from './InputEmail.vue';
 import InputPassword from './InputPassword.vue';
 
 const username = ref('');
 const email = ref('');
 const password = ref('');
+
+const setEmail = (updatedEmail) => {
+  email.value = updatedEmail;
+};
 
 const setPassword = (updatedPassword) => {
   password.value = updatedPassword;
@@ -39,20 +44,7 @@ const signUserUp = async () => {
         placeholder="Your login"
       />
     </div>
-    <div class="relative mt-2 rounded-md shadow-sm">
-      <AtSymbolIcon
-        class="pointer-events-none absolute inset-y-0 left-0 top-1.5 flex h-6 w-6 items-center stroke-gray-400 pl-1"
-      />
-      <input
-        v-model="email"
-        type="email"
-        name="email"
-        id="email"
-        required
-        class="block w-full rounded-md border-0 py-1.5 pl-7 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-900 sm:text-sm sm:leading-6"
-        placeholder="E-mail"
-      />
-    </div>
+    <InputEmail @updatedEmail="setEmail" />
     <InputPassword @updatedPassword="setPassword" />
   </form>
   <div class="text-center text-red-600">{{ error }}</div>
