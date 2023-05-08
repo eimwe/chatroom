@@ -1,5 +1,6 @@
 <script setup>
 import { ref } from 'vue';
+import useLogin from '../composables/useLogin.js';
 import { DialogTitle } from '@headlessui/vue';
 import InputEmail from './InputEmail.vue';
 import InputPassword from './InputPassword.vue';
@@ -15,10 +16,10 @@ const setPassword = (updatedPassword) => {
   password.value = updatedPassword;
 };
 
-const signUserIn = () => {
-  console.log(`form submitted with E-mail: ${email.value}, Password: ${password.value}`);
-  email.value = '';
-  password.value = '';
+const { error, login } = useLogin();
+
+const signUserIn = async () => {
+  await login(email.value, password.value);
 };
 </script>
 
@@ -30,7 +31,7 @@ const signUserIn = () => {
     <InputEmail @updatedEmail="setEmail" />
     <InputPassword @updatedPassword="setPassword" />
   </form>
-
+  <div class="text-center text-red-600">{{ error }}</div>
   <div class="mt-4 text-center">
     <button
       type="submit"
