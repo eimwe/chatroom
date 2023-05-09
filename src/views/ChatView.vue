@@ -1,1 +1,7 @@
-<template>Welcome to the chat!</template>
+<script setup>
+import HeaderNav from '../components/HeaderNav.vue';
+</script>
+
+<template>
+  <HeaderNav />
+</template>
