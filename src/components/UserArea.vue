@@ -2,10 +2,12 @@
 import { Menu, MenuButton, MenuItems, MenuItem } from '@headlessui/vue';
 import { ArrowLeftOnRectangleIcon } from '@heroicons/vue/20/solid';
 import useLogout from '../composables/useLogout.js';
+import getUser from '../composables/getUser.js';
 
 const emit = defineEmits(['signedOut']);
 
 const { error, logout } = useLogout();
+const { user } = getUser();
 
 const signUserOut = async () => {
   await logout();
@@ -19,6 +21,7 @@ const signUserOut = async () => {
 <template>
   <Menu as="div" class="mt-1 inline-block sm:mt-0">
     <MenuButton
+      v-if="user"
       class="inline-flex w-full items-center justify-center rounded-full bg-blue-200 bg-opacity-20 text-left hover:bg-opacity-30 focus:outline-none focus:ring-offset-2 focus:ring-offset-gray-800 focus-visible:ring-2 focus-visible:ring-blue-500 sm:gap-2 sm:rounded-md sm:px-2 sm:py-1"
     >
       <img
@@ -27,8 +30,8 @@ const signUserOut = async () => {
         alt="Display name"
       />
       <div class="hidden text-sm text-white sm:block">
-        <p class="font-medium">Display name</p>
-        <span class="text-xs text-gray-200">e-mail</span>
+        <p class="font-medium">{{ user.displayName }}</p>
+        <span class="text-xs text-gray-200">{{ user.email }}</span>
       </div>
     </MenuButton>
 
@@ -41,12 +44,12 @@ const signUserOut = async () => {
       leave-to-class="transform scale-95 opacity-0"
     >
       <MenuItems
-        class="absolute right-0 mt-2 w-44 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:w-56"
+        class="w-46 absolute right-0 mt-2 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:w-56"
       >
         <div class="px-1 py-1">
           <div class="mb-2 block px-2 py-2 text-sm text-gray-900 sm:hidden">
-            <p class="font-medium">Display name</p>
-            <span class="text-xs text-gray-500">e-mail</span>
+            <p class="font-medium">{{ user.displayName }}</p>
+            <span class="text-xs text-gray-500">{{ user.email }}</span>
           </div>
           <MenuItem v-slot="{ active }">
             <button
