@@ -1,6 +1,19 @@
 <script setup>
 import { Menu, MenuButton, MenuItems, MenuItem } from '@headlessui/vue';
 import { ArrowLeftOnRectangleIcon } from '@heroicons/vue/20/solid';
+import useLogout from '../composables/useLogout.js';
+
+const emit = defineEmits(['signedOut']);
+
+const { error, logout } = useLogout();
+
+const signUserOut = async () => {
+  await logout();
+
+  if (!error.value) {
+    emit('signedOut');
+  }
+};
 </script>
 
 <template>
@@ -37,6 +50,7 @@ import { ArrowLeftOnRectangleIcon } from '@heroicons/vue/20/solid';
           </div>
           <MenuItem v-slot="{ active }">
             <button
+              @click="signUserOut"
               :class="[
                 active ? 'bg-blue-200 text-blue-900' : 'text-gray-900',
                 'group flex w-full items-center gap-1 rounded-md px-2 py-2 text-sm'
