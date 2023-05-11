@@ -3,12 +3,15 @@ import { ref } from 'vue';
 import { PaperAirplaneIcon } from '@heroicons/vue/24/outline';
 import getUser from '../composables/getUser.js';
 import { serverTimestamp } from 'firebase/firestore';
+import useCollection from '../composables/useCollection.js';
 
 const { user } = getUser();
 
+const { error, addNewDoc } = useCollection('messages');
+
 const message = ref('');
 
-const sendMessage = () => {
+const sendMessage = async () => {
   if (message.value.length == 0) return;
 
   const newMessage = {
@@ -16,15 +19,19 @@ const sendMessage = () => {
     message: message.value,
     createdAt: serverTimestamp()
   };
-  console.log(newMessage);
 
-  message.value = '';
+  await addNewDoc(newMessage);
+
+  if (!error.value) {
+    message.value = '';
+  }
 };
 </script>
 
 <template>
   <form @submit.prevent="sendMessage" @keydown.ctrl.enter="sendMessage">
     <div class="flex items-center justify-between gap-2">
+      {{ error }}
       <textarea
         v-model.trim="message"
         name="message"
