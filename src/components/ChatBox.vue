@@ -17,8 +17,8 @@ const formattedMessages = computed(() => {
 </script>
 
 <template>
-  <main>
-    <div v-if="messages" class="mx-auto max-w-7xl px-4 py-4 sm:px-6 sm:py-6 lg:px-8 lg:py-8">
+  <main class="min-h-[100dvh]">
+    <div v-if="messages" class="mx-auto max-w-7xl px-4 pt-4 sm:px-6 sm:pt-6 lg:px-8 lg:pt-8">
       <div v-if="error">{{ error }}</div>
       <figure v-for="reply in formattedMessages" :key="reply.id">
         <blockquote>{{ reply.message }}</blockquote>
