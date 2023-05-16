@@ -13,13 +13,24 @@ const requireAuth = (to, from, next) => {
   }
 };
 
+const requireNoAuth = (to, from, next) => {
+  let user = auth.currentUser;
+
+  if (user) {
+    next({ path: '/chat' });
+  } else {
+    next();
+  }
+};
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: '/',
       name: 'welcome',
-      component: WelcomeView
+      component: WelcomeView,
+      beforeEnter: requireNoAuth
     },
     {
       path: '/chat',
