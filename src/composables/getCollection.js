@@ -1,4 +1,4 @@
-import { ref } from 'vue';
+import { ref, watchEffect } from 'vue';
 import { db } from '../firebase/config.js';
 import { query, collection, orderBy, onSnapshot } from 'firebase/firestore';
 
@@ -8,7 +8,7 @@ const getCollection = (currentCollection) => {
 
   let collectionRef = query(collection(db, currentCollection), orderBy('createdAt'));
 
-  onSnapshot(
+  const unsubscribe = onSnapshot(
     collectionRef,
     (snapshot) => {
       let results = [];
@@ -25,6 +25,10 @@ const getCollection = (currentCollection) => {
       error.value = err.message;
     }
   );
+
+  watchEffect((onInvalidate) => {
+    onInvalidate(() => unsubscribe());
+  });
 
   return { messages, error };
 };
