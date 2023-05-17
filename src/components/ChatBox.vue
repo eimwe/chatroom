@@ -36,12 +36,18 @@ onUpdated(() => {
       ref="messageContainer"
       class="mx-auto max-w-7xl scroll-mb-16 px-4 pt-4 sm:scroll-mb-28 sm:px-6 sm:pt-6 lg:scroll-mb-32 lg:px-8 lg:pt-8"
     >
-      <div v-if="error">{{ error }}</div>
-      <figure v-for="reply in formattedMessages" :key="reply.id">
-        <blockquote>{{ reply.message }}</blockquote>
-        <figcaption>{{ reply.name }}</figcaption>
-        <span>{{ reply.createdAt }}</span>
-      </figure>
+      <div v-if="error" class="text-center text-red-600">{{ error }}</div>
+      <div class="grid gap-2">
+        <figure v-for="reply in formattedMessages" :key="reply.id" class="flex flex-col-reverse">
+          <blockquote class="w-fit rounded-md bg-blue-100 px-2 py-1 text-blue-900">
+            {{ reply.message }}
+          </blockquote>
+          <figcaption class="flex items-center gap-1 text-sm text-white">
+            <span class="font-medium">{{ reply.name }}</span>
+            <span class="text-xs text-gray-200">{{ reply.createdAt }}</span>
+          </figcaption>
+        </figure>
+      </div>
     </div>
   </main>
 </template>
