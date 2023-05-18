@@ -27,7 +27,10 @@ const scrollToLastMessage = () => {
 };
 
 const formatUserMessages = (currentUser, dataBaseUser) => {
-  return { 'place-self-end items-end': currentUser == dataBaseUser };
+  return {
+    'place-self-end items-end [&>blockquote]:text-blue-100 [&>blockquote]:bg-cyan-950':
+      currentUser == dataBaseUser
+  };
 };
 
 onUpdated(() => {
@@ -40,7 +43,7 @@ onUpdated(() => {
     <div
       v-if="messages"
       ref="messageContainer"
-      class="mx-auto max-w-7xl scroll-mb-16 px-4 pt-4 sm:scroll-mb-28 sm:px-6 sm:pt-6 lg:scroll-mb-32 lg:px-8 lg:pt-8"
+      class="mx-auto max-w-4xl scroll-mb-[68px] px-4 pt-4 sm:scroll-mb-28 sm:px-8 sm:pt-6 lg:scroll-mb-32 lg:px-0 lg:pt-8"
     >
       <div v-if="error" class="text-center text-red-600">{{ error }}</div>
       <div v-if="user" class="grid gap-2">
@@ -50,7 +53,9 @@ onUpdated(() => {
           class="flex flex-col-reverse"
           :class="formatUserMessages(user.displayName, reply.name)"
         >
-          <blockquote class="w-fit rounded-md bg-blue-100 px-2 py-1 text-blue-900">
+          <blockquote
+            class="w-fit max-w-[14rem] rounded-md bg-blue-100 px-2 py-1 text-blue-900 sm:max-w-sm lg:max-w-md"
+          >
             {{ reply.message }}
           </blockquote>
           <figcaption class="flex items-center gap-1 text-sm text-white">
