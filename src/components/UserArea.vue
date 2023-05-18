@@ -44,7 +44,7 @@ const signUserOut = async () => {
       leave-to-class="transform scale-95 opacity-0"
     >
       <MenuItems
-        class="w-46 absolute right-0 mt-2 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:w-56"
+        class="absolute right-0 mt-2 min-w-fit origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
       >
         <div class="px-1 py-1">
           <div class="mb-2 block px-2 py-2 text-sm text-gray-900 sm:hidden">
