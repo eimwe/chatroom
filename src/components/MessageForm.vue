@@ -11,6 +11,10 @@ const { error, addNewDoc } = useCollection('messages');
 
 const message = ref('');
 
+const vFocus = {
+  mounted: (el) => el.focus()
+};
+
 const sendMessage = async () => {
   if (message.value.length == 0) return;
 
@@ -34,6 +38,7 @@ const sendMessage = async () => {
       {{ error }}
       <textarea
         v-model.trim="message"
+        v-focus
         name="message"
         rows="1"
         placeholder="Type message here"
