@@ -1,19 +1,14 @@
 <script setup>
 import { ref } from 'vue';
 import { TransitionRoot, TransitionChild, Dialog, DialogPanel } from '@headlessui/vue';
-import { XMarkIcon } from '@heroicons/vue/24/solid';
 import ModalContent from './ModalContent.vue';
 
 const isOpen = ref(true);
-
-const closeModal = () => {
-  isOpen.value = !isOpen.value;
-};
 </script>
 
 <template>
   <TransitionRoot appear :show="isOpen" as="template">
-    <Dialog as="div" @close="closeModal" class="relative z-10">
+    <Dialog as="div" class="relative z-10">
       <TransitionChild
         as="template"
         enter="duration-300 ease-out"
@@ -40,13 +35,6 @@ const closeModal = () => {
             <DialogPanel
               class="relative w-full max-w-sm transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all"
             >
-              <button
-                type="button"
-                class="absolute right-5 top-5 inline-flex justify-center rounded-md border border-transparent bg-transparent text-sm font-medium hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-                @click="closeModal"
-              >
-                <XMarkIcon class="h-6 w-6 text-blue-900" />
-              </button>
               <ModalContent />
             </DialogPanel>
           </TransitionChild>
