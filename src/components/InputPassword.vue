@@ -19,6 +19,7 @@ const onPasswordUpdate = () => {
       name="toggle-password"
       type="checkbox"
       :checked="hiddenPassword"
+      tabindex="-1"
       class="absolute left-1.5 top-2.5 h-4 w-4 cursor-pointer rounded border-transparent text-transparent focus:ring-transparent"
     />
     <EyeSlashIcon
