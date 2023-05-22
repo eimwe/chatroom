@@ -1,6 +1,7 @@
 <script setup>
 import { Menu, MenuButton, MenuItems, MenuItem } from '@headlessui/vue';
 import { ArrowLeftOnRectangleIcon } from '@heroicons/vue/20/solid';
+import UserAvatar from './UserAvatar.vue';
 import useLogout from '../composables/useLogout.js';
 import getUser from '../composables/getUser.js';
 
@@ -24,11 +25,7 @@ const signUserOut = async () => {
       v-if="user"
       class="inline-flex w-full items-center justify-center rounded-full bg-blue-200 bg-opacity-20 text-left hover:bg-opacity-30 focus:outline-none focus:ring-offset-2 focus:ring-offset-gray-800 focus-visible:ring-2 focus-visible:ring-blue-500 sm:gap-2 sm:rounded-md sm:px-2 sm:py-1"
     >
-      <img
-        class="h-10 w-10 rounded-full"
-        src="https://tailwindui.com/img/avatar-1.jpg"
-        alt="Display name"
-      />
+      <UserAvatar :alt="`${user.displayName}'s avatar`" />
       <div class="hidden text-sm text-white sm:block">
         <p class="font-medium">{{ user.displayName }}</p>
         <span class="text-xs text-gray-200">{{ user.email }}</span>
