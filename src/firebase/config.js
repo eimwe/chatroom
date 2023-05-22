@@ -2,8 +2,10 @@ import { initializeApp } from 'firebase/app';
 import { getFirestore } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
 
+const firebaseApiKey = import.meta.env.VITE_FIREBASE_API_KEY;
+
 const firebaseConfig = {
-  apiKey: 'AIzaSyCRULrKR6bKqGE9aUGLR5cmysfX3MksfOU',
+  apiKey: firebaseApiKey,
   authDomain: 'chatroom-cf528.firebaseapp.com',
   projectId: 'chatroom-cf528',
   storageBucket: 'chatroom-cf528.appspot.com',
