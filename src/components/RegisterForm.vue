@@ -5,6 +5,7 @@ import { DialogTitle } from '@headlessui/vue';
 import { UserCircleIcon } from '@heroicons/vue/24/outline';
 import InputEmail from './InputEmail.vue';
 import InputPassword from './InputPassword.vue';
+import ButtonSlot from './ButtonSlot.vue';
 
 const emit = defineEmits(['signedUp']);
 
@@ -55,12 +56,6 @@ const signUserUp = async () => {
   </form>
   <div class="text-center text-red-600">{{ error }}</div>
   <div class="mt-4 text-center">
-    <button
-      type="submit"
-      form="signup-form"
-      class="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-    >
-      Sign up
-    </button>
+    <ButtonSlot type="submit" form="signup-form">Sign up</ButtonSlot>
   </div>
 </template>

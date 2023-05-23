@@ -4,6 +4,7 @@ import useLogin from '../composables/useLogin.js';
 import { DialogTitle } from '@headlessui/vue';
 import InputEmail from './InputEmail.vue';
 import InputPassword from './InputPassword.vue';
+import ButtonSlot from './ButtonSlot.vue';
 
 const emit = defineEmits(['signedIn']);
 
@@ -39,12 +40,6 @@ const signUserIn = async () => {
   </form>
   <div class="text-center text-red-600">{{ error }}</div>
   <div class="mt-4 text-center">
-    <button
-      type="submit"
-      form="signin-form"
-      class="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-    >
-      Sign in
-    </button>
+    <ButtonSlot type="submit" form="signin-form">Sign in</ButtonSlot>
   </div>
 </template>
