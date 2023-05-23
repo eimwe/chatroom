@@ -28,7 +28,7 @@ const scrollToLastMessage = () => {
 
 const formatUserMessages = (currentUser, dataBaseUser) => {
   return {
-    'place-self-end items-end [&>blockquote]:text-blue-100 [&>blockquote]:bg-cyan-950':
+    'place-self-end items-end [&>blockquote]:text-blue-100 [&>blockquote]:bg-cyan-800 dark:[&>blockquote]:bg-cyan-950':
       currentUser == dataBaseUser
   };
 };
@@ -54,13 +54,13 @@ onUpdated(() => {
           :class="formatUserMessages(user.displayName, reply.name)"
         >
           <blockquote
-            class="w-fit max-w-[14rem] rounded-md bg-blue-100 px-2 py-1 text-blue-900 sm:max-w-sm lg:max-w-md"
+            class="w-fit max-w-[14rem] rounded-md bg-blue-200 px-2 py-1 text-blue-900 dark:bg-blue-100 sm:max-w-sm lg:max-w-md"
           >
             {{ reply.message }}
           </blockquote>
-          <figcaption class="flex items-center gap-1 text-sm text-white">
+          <figcaption class="flex items-center gap-1 text-sm text-blue-950 dark:text-white">
             <span class="font-medium">{{ reply.name }}</span>
-            <span class="text-xs text-gray-200">{{ reply.createdAt }}</span>
+            <span class="text-xs text-blue-900 dark:text-gray-200">{{ reply.createdAt }}</span>
           </figcaption>
         </figure>
       </div>
