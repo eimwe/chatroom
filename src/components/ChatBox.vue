@@ -44,7 +44,7 @@ onUpdated(() => {
           :class="formatUserMessages(user.displayName, reply.name)"
         >
           <blockquote
-            class="w-fit max-w-[14rem] rounded-md bg-blue-200 px-2 py-1 text-blue-900 dark:bg-blue-100 sm:max-w-sm lg:max-w-md"
+            class="w-fit max-w-[14rem] break-words rounded-md bg-blue-200 px-2 py-1 text-blue-900 dark:bg-blue-100 sm:max-w-sm lg:max-w-md"
           >
             {{ reply.message }}
           </blockquote>
