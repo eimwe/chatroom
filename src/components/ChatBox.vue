@@ -1,5 +1,6 @@
 <script setup>
-import { ref, computed, onUpdated } from 'vue';
+import { ref, onUpdated } from 'vue';
+import { UseTimeAgo } from '@vueuse/components';
 import getCollection from '../composables/getCollection.js';
 import getUser from '../composables/getUser.js';
 
@@ -7,17 +8,6 @@ const { messages, error } = getCollection('messages');
 const { user } = getUser();
 
 const messageContainer = ref(null);
-
-const formattedMessages = computed(() => {
-  return messages.value.map((reply) => {
-    const date = reply.createdAt.toDate();
-    let hours = date.getHours();
-    let minutes = date.getMinutes();
-    if (minutes < 10) minutes = `0${minutes}`;
-    let time = `${hours}:${minutes}`;
-    return { ...reply, createdAt: time };
-  });
-});
 
 const scrollToLastMessage = () => {
   messageContainer.value?.scrollIntoView({
@@ -48,7 +38,7 @@ onUpdated(() => {
       <div v-if="error" class="text-center text-red-600">{{ error }}</div>
       <div v-if="user" class="grid gap-2">
         <figure
-          v-for="reply in formattedMessages"
+          v-for="reply in messages"
           :key="reply.id"
           class="flex flex-col-reverse"
           :class="formatUserMessages(user.displayName, reply.name)"
@@ -60,7 +50,11 @@ onUpdated(() => {
           </blockquote>
           <figcaption class="flex items-center gap-1 text-sm text-blue-950 dark:text-white">
             <span class="font-medium">{{ reply.name }}</span>
-            <span class="text-xs text-blue-900 dark:text-gray-200">{{ reply.createdAt }}</span>
+            <span class="text-xs text-blue-900 dark:text-gray-200">
+              <UseTimeAgo v-slot="{ timeAgo }" :time="reply.createdAt.toDate()">
+                {{ timeAgo }}
+              </UseTimeAgo>
+            </span>
           </figcaption>
         </figure>
       </div>
