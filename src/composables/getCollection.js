@@ -13,8 +13,8 @@ const getCollection = (currentCollection) => {
     (snapshot) => {
       let results = [];
 
-      snapshot.forEach((snap) => {
-        snap.data().createdAt && results.push({ ...snap.data(), id: snap.id });
+      snapshot.docs.forEach((doc) => {
+        doc.data().createdAt && results.push({ ...doc.data(), id: doc.id });
       });
 
       messages.value = results;
