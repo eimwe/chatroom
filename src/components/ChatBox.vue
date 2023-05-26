@@ -33,7 +33,7 @@ onUpdated(() => {
     <div
       v-if="messages"
       ref="messageContainer"
-      class="mx-auto max-w-4xl scroll-mb-[68px] px-4 pt-4 sm:scroll-mb-28 sm:px-8 sm:pt-6 lg:scroll-mb-32 lg:px-0 lg:pt-8"
+      class="mx-auto max-w-4xl scroll-mb-80 px-4 pt-4 sm:scroll-mb-28 sm:px-8 sm:pt-6 lg:scroll-mb-32 lg:px-0 lg:pt-8"
     >
       <div v-if="error" class="text-center text-red-600">{{ error }}</div>
       <div v-if="user" class="grid gap-2">
