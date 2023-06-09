@@ -12,7 +12,7 @@ const returnHome = () => {
 </script>
 
 <template>
-  <header class="sticky top-0 bg-cyan-800 dark:bg-cyan-950">
+  <header class="sticky top-0 z-10 bg-cyan-800 dark:bg-cyan-950">
     <nav class="mx-auto max-w-4xl px-4 sm:px-8 lg:px-0">
       <div class="relative flex h-16 items-center justify-between">
         <div class="flex flex-shrink-0 items-center">
