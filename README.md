@@ -56,7 +56,7 @@ npm run format
 ## Attributions
 
 1. **Irene** for testing the project across numerous devices 💜
-2. [The Net Ninja](https://www.youtube.com/TheNetNinja) for the inspiration fro [this repo](https://github.com/iamshaunjp/Vue-3-Firebase);
+2. [The Net Ninja](https://www.youtube.com/TheNetNinja) for [this repo](https://github.com/iamshaunjp/Vue-3-Firebase) and [Tyler Potts](https://www.youtube.com/@TylerPotts) for [this video](https://youtu.be/72Fk9i9HcZM). This project was inspired by and borrowed bits and pieces from both of them;
 3. [Doug Stevenson](https://stackoverflow.com/users/807126/doug-stevenson) for a hint on getting server Timestamp from firebase v9 in [their stackoverflow reply](https://stackoverflow.com/a/69519471) licensed by https://creativecommons.org/licenses/by-sa/4.0/;
 4. [anshul](https://stackoverflow.com/users/10900875/anshul) for the example of using Firebase 9 auth for creating user with email and password in [their post](https://stackoverflow.com/a/70914163) licensed by https://creativecommons.org/licenses/by-sa/4.0/;
 5. [Erik](https://erikmartinjordan.com/about) for the detailed guide on how to update user's profile with Firebase 9 methods in [this blog entry](https://erikmartinjordan.com/user-update-profile-firebase);
