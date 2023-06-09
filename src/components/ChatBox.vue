@@ -16,13 +16,6 @@ const scrollToLastMessage = () => {
   });
 };
 
-const formatUserMessages = (currentUser, dataBaseUser) => {
-  return {
-    'place-self-end items-end [&>blockquote]:text-blue-100 [&>blockquote]:bg-cyan-800 dark:[&>blockquote]:bg-cyan-950':
-      currentUser == dataBaseUser
-  };
-};
-
 onUpdated(() => {
   scrollToLastMessage();
 });
@@ -40,22 +33,27 @@ onUpdated(() => {
         <figure
           v-for="reply in messages"
           :key="reply.id"
-          class="flex flex-col-reverse"
-          :class="formatUserMessages(user.displayName, reply.name)"
+          class="chat"
+          :class="user.displayName == reply.name ? 'chat-end' : 'chat-start'"
         >
-          <blockquote
-            class="w-fit max-w-[14rem] break-words rounded-md bg-blue-200 px-2 py-1 text-blue-900 dark:bg-blue-100 sm:max-w-sm lg:max-w-md"
-          >
-            {{ reply.message }}
-          </blockquote>
-          <figcaption class="flex items-center gap-1 text-sm text-blue-950 dark:text-white">
-            <span class="font-medium">{{ reply.name }}</span>
-            <span class="text-xs text-blue-900 dark:text-gray-200">
+          <figcaption class="chat-header font-medium text-blue-950 dark:text-white">
+            {{ reply.name }}
+            <time class="text-xs text-blue-900 dark:text-gray-200">
               <UseTimeAgo v-slot="{ timeAgo }" :time="reply.createdAt.toDate()">
                 {{ timeAgo }}
               </UseTimeAgo>
-            </span>
+            </time>
           </figcaption>
+          <blockquote
+            class="chat-bubble w-fit max-w-[14rem] break-words sm:max-w-sm lg:max-w-md"
+            :class="
+              user.displayName == reply.name
+                ? 'bg-cyan-800 text-blue-100 dark:bg-cyan-950'
+                : 'bg-blue-200 text-blue-900 dark:bg-blue-100'
+            "
+          >
+            {{ reply.message }}
+          </blockquote>
         </figure>
       </div>
     </div>
